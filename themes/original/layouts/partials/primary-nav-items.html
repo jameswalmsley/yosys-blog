@@ -1,0 +1,14 @@
+<ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="{{ .Site.BaseURL }}//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="{{ .Site.BaseURL }}//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="{{ .Site.BaseURL }}//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="{{ .Site.BaseURL }}//docs/home">Install</a>
+  </li>
+</ul>

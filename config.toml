@@ -1,0 +1,8 @@
+baseURL = "http://verilog.james.walms.co.uk"
+languageCode = "en-gb"
+title = "Learn Verilog with YoSys"
+theme = "original"
+pygmentsUseClassic = "true"
+
+[permalinks]
+  blog = "/:year/:month/:day/:title/"
