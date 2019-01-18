@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <title>Install</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/normalize.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/gridism.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/style.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/pygments.css" />
+  <link rel="icon" type="image/x-icon" href="http://verilog.james.walms.co.uk/favicon.png" />
+  <script src="http://verilog.james.walms.co.uk/js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+    <body class="wrap">
+
+        <header>
+  <nav class="mobile-nav show-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <h1>
+        <a href="http://verilog.james.walms.co.uk/">
+          <span>James Walmsley</span>
+          <img src="http://verilog.james.walms.co.uk/img/james-logo.png" width="250px" height="115px" alt="">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+        <section class="docs">
+            <div class="grid">
+
+                <div class="unit four-fifths">
+                    <article>
+                        <h1>Install</h1>
+                        
+
+<p>This is the documentation section of the learning Verilog with YoSys blog.
+I aim to add documentation about the features of YoSys I&rsquo;ve used as we go along.</p>
+
+<h2 id="so-what-is-exactly-is-yosys">So what is exactly is YoSys</h2>
+
+<p>YoSys is a complete HDL sysnthesis and optimisation tool.</p>
+
+<h2 id="quick-build-guide">Quick-build guide</h2>
+
+<p>For the impatient, here&rsquo;s how to get YoSys built and installed.</p>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-bash" data-lang="bash"><span></span>~ $ git clone https://github.com/cliffordwolf/yosys.git
+~ $ <span style="color: #f8f8f2">cd</span> yosys
+~/yosys/ $ make config-release
+~/yosys/ $ make
+~/yosys/ $ sudo make install
+</code></pre></div>
+
+
+<h2 id="quick-build-project-icestorm">Quick-build - Project IceStorm</h2>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-bash" data-lang="bash"><span></span>~ $ git clone git clone https://github.com/cliffordwolf/icestorm.git icestorm
+~/icestorm/ $ <span style="color: #f8f8f2">cd</span> icestorm
+~/icestorm/ $ make -j8
+~/icestorm/ $ sudo make install
+</code></pre></div>
+
+
+<h2 id="quick-build-arachne-pnr-place-and-route-tool-for-ice-fpga-s-used-in-tutorials">Quick-build - Arachne-PNR (Place and Route tool for Ice FPGA&rsquo;s used in tutorials).</h2>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-bash" data-lang="bash"><span></span>~ $ git clone https://github.com/cseed/arachne-pnr.git arachne-pnr
+~ $ <span style="color: #f8f8f2">cd</span> arachne-pnr
+~/arachne-pnr/ $ make -j8
+~/arachne-pnr/ $ sudo make install
+</code></pre></div>
+
+
+<h2 id="wiztips-notes-and-warnings">WizTips™, Notes, and Warnings</h2>
+
+<p>Throughout this site, there are a number of small and handy pieces of information
+that can be useful while using YoSys. Some make your life easier,
+some are interesting, and some keep you safe! Here&rsquo;s what to look out for:</p>
+
+<div class="note">
+    <h5>WizTips™ help you get more from YoSys</h5>
+    <p>
+  These are tips that will help you become a YoSys Wizard!
+</p>
+</div>
+
+<div class="note info">
+    <h5>Notes are handy pieces of information</h5>
+    <p>
+  These often give you useful background information, on a YoSys feature.
+</p>
+</div>
+
+
+<div class="note warning">
+    <h5>Warnings help you stay safe!</h5>
+    <p>
+  Be aware of these messages if you wish to avoid certain death.
+</p>
+</div>
+
+<p>If you come across anything along the way that we haven’t covered, or if you
+know of a tip you think others would find handy, please <a href="https://github.com/jameswalmsley/yosys-blog/issues/new">file an
+issue</a> and we’ll see about
+including it on this site.</p>
+
+                    </article>
+                </div>
+
+                <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <h4>Getting Started</h4>
+    <ul>
+      <li class="">
+        <a href="http://verilog.james.walms.co.uk/docs/home">Install Tools</a>
+      </li>
+  </aside>
+</div>
+
+
+            </div>
+ 
+        </section>
+
+
+        <footer>
+        <div class="grid">
+          <div class="unit one-third center-on-mobiles">
+            <p>By <a href="http://james.walms.co.uk">James Walmsley</a>.</p>
+          </div>
+          <div class="unit two-thirds align-right center-on-mobiles">
+            <p>
+              Proudly hosted by
+              <a href="https://github.com">
+                <img src="http://verilog.james.walms.co.uk/img/footer-logo.png" alt="GitHub • Social coding">
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      
+      
+    </body>
+</html>

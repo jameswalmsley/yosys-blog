@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Verilog Blog on Learn Verilog with YoSys</title>
+    <link>http://verilog.james.walms.co.uk/blog/</link>
+    <description>Recent content in Verilog Blog on Learn Verilog with YoSys</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 29 Oct 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://verilog.james.walms.co.uk/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Yosys to FPGA</title>
+      <link>http://verilog.james.walms.co.uk/2013/10/29/yosys-to-fpga/</link>
+      <pubDate>Tue, 29 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/2013/10/29/yosys-to-fpga/</guid>
+      <description>&lt;p&gt;YoSys can output synthesised designs targeted for Xilinx primitives.
+So lets have a go!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://verilog.james.walms.co.uk/2013/06/01/hello-world/</link>
+      <pubDate>Sat, 01 Jun 2013 00:00:00 +0100</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/2013/06/01/hello-world/</guid>
+      <description>This is the start of the learning Verilog with YoSys blog. Well, we&amp;rsquo;d better start somewhere, and you&amp;rsquo;re going to need a working YoSys toolchain&amp;hellip; so here we go!</description>
+    </item>
+    
+  </channel>
+</rss>

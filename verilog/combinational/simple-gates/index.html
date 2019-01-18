@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Gates</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/normalize.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/gridism.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/style.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/pygments.css" />
+  <link rel="icon" type="image/x-icon" href="http://verilog.james.walms.co.uk/favicon.png" />
+  <script src="http://verilog.james.walms.co.uk/js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+    <body class="wrap">
+
+        <header>
+  <nav class="mobile-nav show-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <h1>
+        <a href="http://verilog.james.walms.co.uk/">
+          <span>James Walmsley</span>
+          <img src="http://verilog.james.walms.co.uk/img/james-logo.png" width="250px" height="115px" alt="">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+        <section class="docs">
+            <div class="grid">
+
+                <div class="unit four-fifths">
+                    <article>
+                        <h1>Simple Gates</h1>
+                        
+
+<p>We&rsquo;ll start by implementing some logic gates as verilog modules. These are the basis
+of all combinational (sometimes called combinatorial) logic that make up all digital
+circuits.</p>
+
+<h1 id="verilog-modules">Verilog Modules</h1>
+
+<p>You can think of a module as defining a block box which has a number of input signals,
+and at least 1 or more output signals. Within the black box some function is performed,
+the implementation of which is not necessarily known to the &ldquo;user&rdquo;.</p>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-verilog" data-lang="verilog"><span></span><span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">and_gate(a,</span> <span style="color: #f8f8f2">b,</span> <span style="color: #f8f8f2">q);</span>
+    <span style="color: #66d9ef">input</span>  <span style="color: #f8f8f2">a,</span> <span style="color: #f8f8f2">b;</span>
+    <span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">q;</span>
+
+    <span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">q</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(a</span> <span style="color: #f92672">&amp;</span> <span style="color: #f8f8f2">b);</span>
+<span style="color: #66d9ef">endmodule</span>
+</code></pre></div>
+
+
+<div class="note info">
+    <h5>Black-boxes (modules) with no outputs.</h5>
+    <p>
+	No matter how complex a module might be, if it provides no outputs then it matches an
+	equivalent module that contains no logic, and does nothing. All good synthesis tools will
+	optimise such constructs away.
+</p>
+</div>
+
+
+<p>Now we have a description of a digital circuit we can synthesise it.</p>
+
+<p>Synthesis is the process of taking a (relatively) high-level description of a digital circuit
+and expressing it in a low-level (usually gate-level) form.</p>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-verilog" data-lang="verilog"><span></span><span style="color: #f8f8f2">read_verilog</span> <span style="color: #f8f8f2">and_gate.v</span>
+<span style="color: #f8f8f2">show</span>
+</code></pre></div>
+
+
+<p>Which of produces the following circuit in YoSys.</p>
+
+<p><img src="/verilog/combinational/simple-gates/and_gate.png" alt="YoSys and gate" /></p>
+
+<p>An exciting result, nothing has happened! We have an exact representation in YoSys of our original description.
+Well no surprises there, as gates are usually the building blocks of such circuits.</p>
+
+<div class="note info">
+    <h5>Are logic gates fundamental?</h5>
+    <p>
+
+	Logic gates are themselves built from transistors. However it is rarely necessary to look at gates at such a low-level.
+	In ASIC design it may be useful to get the synthesis tool to map our logic gates to transistor circuits available to us.
+
+	These fundamental building blocks used in different technologies are referred to as cells.
+</p>
+</div>
+
+
+<p>Thats not the full story, we haven&rsquo;t actually synthesised our design. Load the design in YoSys once more and
+run the following commands:</p>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-verilog" data-lang="verilog"><span></span><span style="color: #f8f8f2">read_verilog</span> <span style="color: #f8f8f2">and_gate.v</span>
+<span style="color: #f8f8f2">techmap</span>
+<span style="color: #f8f8f2">opt</span>
+<span style="color: #f8f8f2">show</span>
+</code></pre></div>
+
+
+<p>This loads the design, maps the design to our default technology (logic gates) and then optimises the design.
+The result is subtley different.</p>
+
+<p><img src="/verilog/combinational/simple-gates/and_gate_synth.png" alt="YoSys synthesised and gate" /></p>
+
+<p>Note the name of the gate, its now $<em>AND</em> instead of $and. $and is a behavioural representation of the AND boolean
+function, and $<em>AND</em> is a fundamental AND gate.</p>
+
+<h1 id="closing-the-gate">Closing the Gate</h1>
+
+<p>Ok such simple gates are kind of boring, nothing special will happen, but for completion here are some
+basic gates in verilog:
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-verilog" data-lang="verilog"><span></span><span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">not_gate(a,</span> <span style="color: #f8f8f2">q);</span>
+    <span style="color: #66d9ef">input</span>  <span style="color: #f8f8f2">a;</span>
+    <span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">q;</span>
+
+    <span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">q</span> <span style="color: #f92672">=</span> <span style="color: #f92672">~</span><span style="color: #f8f8f2">a;</span>
+<span style="color: #66d9ef">endmodule</span>
+
+<span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">and_gate(a,</span> <span style="color: #f8f8f2">b,</span> <span style="color: #f8f8f2">q);</span>
+    <span style="color: #66d9ef">input</span>  <span style="color: #f8f8f2">a,</span> <span style="color: #f8f8f2">b;</span>
+    <span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">q;</span>
+
+    <span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">q</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(a</span> <span style="color: #f92672">&amp;</span> <span style="color: #f8f8f2">b);</span>
+<span style="color: #66d9ef">endmodule</span>
+
+<span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">or_gate(a,</span> <span style="color: #f8f8f2">b,</span> <span style="color: #f8f8f2">q);</span>
+    <span style="color: #66d9ef">input</span>  <span style="color: #f8f8f2">a,</span> <span style="color: #f8f8f2">b;</span>
+    <span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">q;</span>
+    <span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">q</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(a</span> <span style="color: #f92672">|</span> <span style="color: #f8f8f2">b);</span>
+<span style="color: #66d9ef">endmodule</span>
+
+<span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">xor_gate(a,</span> <span style="color: #f8f8f2">b,</span> <span style="color: #f8f8f2">q);</span>
+    <span style="color: #66d9ef">input</span> <span style="color: #f8f8f2">a,</span> <span style="color: #f8f8f2">b;</span>
+    <span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">q;</span>
+    <span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">q</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(a</span> <span style="color: #f92672">^</span> <span style="color: #f8f8f2">b);</span>
+<span style="color: #66d9ef">endmodule</span>
+</code></pre></div>
+</p>
+
+<p>Now we&rsquo;ve learnt some fundamentals aspects of YoSys and implementing logic gates in verilog, lets move on
+to some more complex combinational logic functions.</p>
+
+<div class="note info">
+    <h5>Gate Primitives in Verilog</h5>
+    <p>
+	Our verilog examples are actually behavioral descriptions. After running the YoSys techmap and opt commands
+	on these designs, run the write_verilog command and compare the verilog output.
+
+	We shall cover verilog primitive instantiation in a later tutorial.
+</p>
+</div>
+
+
+                    </article>
+                </div>
+
+                <div class="unit one-fifth hide-on-mobiles">
+    <aside>
+        <h4>Getting Started</h4>
+        <h4>Combinational Logic</h4>
+        <ul>
+        <li class="">
+            <a href="http://verilog.james.walms.co.uk/verilog/combinational/simple-gates">Simple Gates</a>
+        </li>
+        <li class="">
+            <a href="http://verilog.james.walms.co.uk/verilog/combinational/comparator/">Comparator</a>
+        </li>
+    </aside>
+</div>
+
+            </div>
+ 
+        </section>
+
+
+        <footer>
+        <div class="grid">
+          <div class="unit one-third center-on-mobiles">
+            <p>By <a href="http://james.walms.co.uk">James Walmsley</a>.</p>
+          </div>
+          <div class="unit two-thirds align-right center-on-mobiles">
+            <p>
+              Proudly hosted by
+              <a href="https://github.com">
+                <img src="http://verilog.james.walms.co.uk/img/footer-logo.png" alt="GitHub • Social coding">
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      
+      
+    </body>
+</html>

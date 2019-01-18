@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Learn Verilog with YoSys</title>
+    <link>http://verilog.james.walms.co.uk/</link>
+    <description>Recent content on Learn Verilog with YoSys</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 29 Oct 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://verilog.james.walms.co.uk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Yosys to FPGA</title>
+      <link>http://verilog.james.walms.co.uk/2013/10/29/yosys-to-fpga/</link>
+      <pubDate>Tue, 29 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/2013/10/29/yosys-to-fpga/</guid>
+      <description>&lt;p&gt;YoSys can output synthesised designs targeted for Xilinx primitives.
+So lets have a go!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://verilog.james.walms.co.uk/2013/06/01/hello-world/</link>
+      <pubDate>Sat, 01 Jun 2013 00:00:00 +0100</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/2013/06/01/hello-world/</guid>
+      <description>This is the start of the learning Verilog with YoSys blog. Well, we&amp;rsquo;d better start somewhere, and you&amp;rsquo;re going to need a working YoSys toolchain&amp;hellip; so here we go!</description>
+    </item>
+    
+    <item>
+      <title>Comparator</title>
+      <link>http://verilog.james.walms.co.uk/verilog/combinational/comparator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/verilog/combinational/comparator/</guid>
+      <description>To be continued&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>http://verilog.james.walms.co.uk/pages/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/pages/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Install</title>
+      <link>http://verilog.james.walms.co.uk/docs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/docs/</guid>
+      <description>This is the documentation section of the learning Verilog with YoSys blog. I aim to add documentation about the features of YoSys I&amp;rsquo;ve used as we go along.
+So what is exactly is YoSys YoSys is a complete HDL sysnthesis and optimisation tool.
+Quick-build guide For the impatient, here&amp;rsquo;s how to get YoSys built and installed.
+~ $ git clone https://github.com/cliffordwolf/yosys.git ~ $ cd yosys ~/yosys/ $ make config-release ~/yosys/ $ make ~/yosys/ $ sudo make install  Quick-build - Project IceStorm ~ $ git clone git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Simple Gates</title>
+      <link>http://verilog.james.walms.co.uk/verilog/combinational/simple-gates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/verilog/combinational/simple-gates/</guid>
+      <description>We&amp;rsquo;ll start by implementing some logic gates as verilog modules. These are the basis of all combinational (sometimes called combinatorial) logic that make up all digital circuits.
+Verilog Modules You can think of a module as defining a block box which has a number of input signals, and at least 1 or more output signals. Within the black box some function is performed, the implementation of which is not necessarily known to the &amp;ldquo;user&amp;rdquo;.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <title>Yosys to FPGA</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/normalize.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/gridism.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/style.css" />
+  <link rel="stylesheet" href="http://verilog.james.walms.co.uk/css/pygments.css" />
+  <link rel="icon" type="image/x-icon" href="http://verilog.james.walms.co.uk/favicon.png" />
+  <script src="http://verilog.james.walms.co.uk/js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+    <body class="wrap">
+
+        <header>
+  <nav class="mobile-nav show-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="unit one-third center-on-mobiles">
+      <h1>
+        <a href="http://verilog.james.walms.co.uk/">
+          <span>James Walmsley</span>
+          <img src="http://verilog.james.walms.co.uk/img/james-logo.png" width="250px" height="115px" alt="">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="{% if page.overview %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//">Overview</a>
+  </li>
+  <li class="{% if page.iblog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//blog/home">Blog</a>
+  </li>
+  <li class="{% if page.verilog %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//verilog/home">Verilog</a>
+  </li>
+  <li class="{% if page.docs %}current{% endif %}">
+    <a href="http://verilog.james.walms.co.uk//docs/home">Install</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+        <section class="docs">
+            <div class="grid">
+
+                <div class="unit four-fifths">
+                    <article>
+                        <h1>Yosys to FPGA</h1>
+                        <p>YoSys can output synthesised designs targeted for Xilinx primitives.
+So lets have a go!</p>
+
+<p>This tutorial is targeted for the Zynq ZEDBOARD development kit. (zedboard.org).
+Porting to other Xilinx kits is as simple as modifying the user-constraints file
+and changing the part-number.</p>
+
+<h1 id="example-v">example.v</h1>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-verilog" data-lang="verilog"><span></span><span style="color: #66d9ef">module</span> <span style="color: #f8f8f2">top(clk,</span> <span style="color: #f8f8f2">ctrl,</span> <span style="color: #f8f8f2">led_7,</span> <span style="color: #f8f8f2">led_6,</span> <span style="color: #f8f8f2">led_5,</span> <span style="color: #f8f8f2">led_4,</span> <span style="color: #f8f8f2">led_3,</span> <span style="color: #f8f8f2">led_2,</span> <span style="color: #f8f8f2">led_1,</span> <span style="color: #f8f8f2">led_0);</span>
+
+<span style="color: #66d9ef">input</span> <span style="color: #f8f8f2">clk,</span> <span style="color: #f8f8f2">ctrl;</span>
+<span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">led_7,</span> <span style="color: #f8f8f2">led_6,</span> <span style="color: #f8f8f2">led_5,</span> <span style="color: #f8f8f2">led_4;</span>
+<span style="color: #66d9ef">output</span> <span style="color: #f8f8f2">led_3,</span> <span style="color: #f8f8f2">led_2,</span> <span style="color: #f8f8f2">led_1,</span> <span style="color: #f8f8f2">led_0;</span>
+
+<span style="color: #66d9ef">reg</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">31</span><span style="color: #f92672">:</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span> <span style="color: #f8f8f2">counter;</span>
+
+<span style="color: #66d9ef">always</span> <span style="color: #f8f8f2">@(</span><span style="color: #66d9ef">posedge</span> <span style="color: #f8f8f2">clk)</span>
+	   <span style="color: #f8f8f2">counter</span> <span style="color: #f92672">&lt;=</span> <span style="color: #f8f8f2">counter</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">(ctrl</span> <span style="color: #f92672">?</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">:</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #66d9ef">assign</span> <span style="color: #f8f8f2">{led_7,</span> <span style="color: #f8f8f2">led_6,</span> <span style="color: #f8f8f2">led_5,</span> <span style="color: #f8f8f2">led_4,</span> <span style="color: #f8f8f2">led_3,</span> <span style="color: #f8f8f2">led_2,</span> <span style="color: #f8f8f2">led_1,</span> <span style="color: #f8f8f2">led_0}</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">counter</span> <span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">24</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">endmodule</span>
+</code></pre></div>
+
+
+<p>The module is simple, it takes a clk signal and outputs leds at various divisions of
+the clock frequency. (A binary counter).</p>
+
+<p>The ctrl signal can be used to speed up the clk counter increment by 4x.</p>
+
+<h1 id="synthesis-script">Synthesis script</h1>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-bash" data-lang="bash"><span></span><span style="color: #75715e">#!/bin/bash</span>
+<span style="color: #f8f8f2">set</span> -ex
+
+<span style="color: #f8f8f2">XILINX_DIR</span><span style="color: #f92672">=</span>/opt/Xilinx/14.7/ISE_DS/ISE
+<span style="color: #f8f8f2">XILINX_PART</span><span style="color: #f92672">=</span>xc7z020clg484-1
+
+yosys - <span style="color: #e6db74">&lt;&lt;- EOT</span>
+<span style="color: #e6db74">	read_verilog example.v</span>
+<span style="color: #e6db74">	synth_xilinx -edif synth.edif</span>
+<span style="color: #e6db74">EOT</span>
+
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/edif2ngd -a synth.edif synth.ngo
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/ngdbuild -p <span style="color: #f8f8f2">$XILINX_PART</span> -uc example.ucf synth.ngo synth.ngd
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/map -p <span style="color: #f8f8f2">$XILINX_PART</span> -w -o mapped.ncd synth.ngd constraints.pcf
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/par -w mapped.ncd placed.ncd constraints.pcf
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/bitgen -w placed.ncd example.bit constraints.pcf
+
+<span style="color: #f8f8f2">$XILINX_DIR</span>/bin/lin64/promgen -w -b -p bin -o example.bin -u <span style="color: #ae81ff">0</span> example.bit -data_width <span style="color: #ae81ff">32</span>
+</code></pre></div>
+
+
+<p>The script executes YoSys, and gets it to synthesise our simple counter example.
+The next commands do the following:</p>
+
+<ol>
+<li>Convert the synthesised output from yosys (in edif format) into the native xilinx format.</li>
+<li>{ part of above } ??</li>
+<li>Map the design to the targetted part&rsquo;s technology.</li>
+<li>Place and route the design. (Hopefully we can use torc for this soon).</li>
+
+<li><p>Generate a bitstream binary file.</p></li>
+
+<li><p>This is an optional stage which byte-swaps the bit file so it can be piped into the Zynq devcfg device easily.</p></li>
+</ol>
+
+<h1 id="user-constraints-file">User Constraints file</h1>
+
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><code class="language-text" data-lang="text"><span></span>NET &quot;clk&quot; TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD &quot;clk&quot; 50 MHz HIGH 50%;
+
+NET &quot;clk&quot; LOC = Y9		   | IOSTANDARD=LVCMOS33;  # &quot;GCLK&quot;
+NET &quot;ctrl&quot; LOC = P16		   | IOSTANDARD=LVCMOS18;  # &quot;BTNC&quot;
+
+NET &quot;led_0&quot; LOC = T22 | IOSTANDARD=LVCMOS33;  # &quot;LD0&quot;
+NET &quot;led_1&quot; LOC = T21 | IOSTANDARD=LVCMOS33;  # &quot;LD1&quot;
+NET &quot;led_2&quot; LOC = U22 | IOSTANDARD=LVCMOS33;  # &quot;LD2&quot;
+NET &quot;led_3&quot; LOC = U21 | IOSTANDARD=LVCMOS33;  # &quot;LD3&quot;
+NET &quot;led_4&quot; LOC = V22 | IOSTANDARD=LVCMOS33;  # &quot;LD4&quot;
+NET &quot;led_5&quot; LOC = W22 | IOSTANDARD=LVCMOS33;  # &quot;LD5&quot;
+NET &quot;led_6&quot; LOC = U19 | IOSTANDARD=LVCMOS33;  # &quot;LD6&quot;
+NET &quot;led_7&quot; LOC = U14 | IOSTANDARD=LVCMOS33;  # &quot;LD7&quot;
+</code></pre></div>
+
+
+<h1 id="synthesis">Synthesis</h1>
+
+<p>Simply run:</p>
+
+<pre><code>bash example.sh
+</code></pre>
+
+<h1 id="download-to-zedboard">Download to zedboard</h1>
+
+<p>You can use the xilinx tools to download the bitstream via JTAG&hellip;.
+Or even better, just place a pre-built bootthunder binary on your sd-card and load the bitstream from the command line.</p>
+
+<p>BOOT.BIN</p>
+                    </article>
+                </div>
+            </div>
+ 
+        </section>
+
+
+        <footer>
+        <div class="grid">
+          <div class="unit one-third center-on-mobiles">
+            <p>By <a href="http://james.walms.co.uk">James Walmsley</a>.</p>
+          </div>
+          <div class="unit two-thirds align-right center-on-mobiles">
+            <p>
+              Proudly hosted by
+              <a href="https://github.com">
+                <img src="http://verilog.james.walms.co.uk/img/footer-logo.png" alt="GitHub • Social coding">
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      
+      
+    </body>
+</html>

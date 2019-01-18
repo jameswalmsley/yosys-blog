@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Verilog on Learn Verilog with YoSys</title>
+    <link>http://verilog.james.walms.co.uk/verilog/</link>
+    <description>Recent content in Verilog on Learn Verilog with YoSys</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="http://verilog.james.walms.co.uk/verilog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Comparator</title>
+      <link>http://verilog.james.walms.co.uk/verilog/combinational/comparator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/verilog/combinational/comparator/</guid>
+      <description>To be continued&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Simple Gates</title>
+      <link>http://verilog.james.walms.co.uk/verilog/combinational/simple-gates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://verilog.james.walms.co.uk/verilog/combinational/simple-gates/</guid>
+      <description>We&amp;rsquo;ll start by implementing some logic gates as verilog modules. These are the basis of all combinational (sometimes called combinatorial) logic that make up all digital circuits.
+Verilog Modules You can think of a module as defining a block box which has a number of input signals, and at least 1 or more output signals. Within the black box some function is performed, the implementation of which is not necessarily known to the &amp;ldquo;user&amp;rdquo;.</description>
+    </item>
+    
+  </channel>
+</rss>
